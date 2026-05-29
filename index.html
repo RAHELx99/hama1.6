@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HBD Hama bot  / HSRAF</title>
+    <title>For Dear HAMA</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
     
     <style>
         body { 
             margin: 0; 
-            background: #00020a; /* تاریكکردنی باکگراوند بۆ ئەوەی شینەکە جوانتر دەرکەوێت */
+            background: #00020a; 
             overflow: hidden; 
             font-family: 'Playfair Display', serif;
             cursor: pointer;
@@ -38,14 +38,12 @@
             font-family: 'Dancing Script', cursive;
             font-weight: bold;
             color: #ffffff; 
-            /* گۆڕینی سێبەری دەقەکە بۆ شینی گەش */
             text-shadow: 2px 2px 0px #00bfff, 0 0 15px #00ffff;
             white-space: nowrap;
         }
 
         .txt-happy { top: 25%; left: 10%; font-size: 2.2rem; transform: rotate(-15deg); }
         .txt-birthday { top: 25%; right: 10%; font-size: 2.2rem; transform: rotate(15deg); }
-        /* گۆڕینی ڕەنگی ناوەکە بۆ شینێکی زۆر کاڵ */
         .txt-name { top: 55%; left: 50%; transform: translate(-50%, -50%); font-size: 4.5rem; color: #e0ffff; }
 
         .split-msg {
@@ -58,25 +56,46 @@
             font-size: 1.2rem;
             font-weight: 600;
             line-height: 1.6;
-            /* گۆڕینی ڕەنگی دەقی نامەکان بۆ شینی کاڵ */
             color: #add8e6; 
-            /* گۆڕینی سێبەری دەقی نامەکان بۆ شین */
             text-shadow: 0 0 5px #87ceeb, 0 0 10px #4169e1;
             text-align: left; 
         }
 
         .msg-left { left: 3%; }
         .msg-right { right: 3%; }
-        .visible { opacity: 1 !important; transform: translateY(0) !important; }
 
-        /* ئاگادارکردنەوە بۆ مۆسیقا - گۆڕینی باکگراوند بۆ شین */
+        /* ستایلی نامە نوێیەکەی خوارەوە */
+        .bottom-msg {
+            position: absolute;
+            bottom: 8%; /* ڕێک ئەو شوێنەی بە سوور دیاریت کردبوو */
+            left: 50%;
+            transform: translate(-50%, 30px);
+            opacity: 0;
+            transition: all 2.5s ease-out;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #add8e6;
+            text-shadow: 0 0 5px #87ceeb, 0 0 10px #4169e1;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        /* کلاسی دەرکەوتن بۆ هەموو نامەکان */
+        .visible { 
+            opacity: 1 !important; 
+            transform: translateY(0) !important; 
+        }
+        .bottom-msg.visible {
+            transform: translate(-50%, 0) !important;
+        }
+
         #music-note {
             position: fixed;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
             color: white;
-            background: rgba(0, 191, 255, 0.3); /* شینی نێۆن بە شەفافی */
+            background: rgba(0, 191, 255, 0.3); 
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 0.9rem;
@@ -102,16 +121,18 @@
         </div>
         <div class="split-msg msg-left" id="msg-left">
             <p>I hope this year is full of success and happiness for you.</p>
-           <p>F                                       A                                     R </p>
+            <p>May your heart always be peaceful and filled with hope.</p>
         </div>
         <div class="split-msg msg-right" id="msg-right">
-            <p>May all your wishes come true one by one Taqa ✨</p>
-            <p>P                                       E                                T </p>
+            <p>May all your wishes come true one by one,</p>
+            <p>and may each new day bring you achievements and beautiful smiles. ✨</p>
+        </div>
+        <div class="bottom-msg" id="msg-bottom">
+            PIROZA HAMA BLBL
         </div>
     </div>
 
     <script>
-        // فەنکشن بۆ دەستپێکردنی مۆسیقا
         function startMusic() {
             const audio = document.getElementById("myAudio");
             audio.play();
@@ -121,7 +142,6 @@
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
-        // گۆڕینی ڕەنگەکانی پارچەکان (particles) بۆ کۆمەڵێک ڕەنگی شینی جوان
         const heartColors = ['#00BFFF', '#87CEEB', '#00FFFF', '#ADD8E6', '#1E90FF'];
         const starColor = '#FFFFFF';
         let fireworks = [];
@@ -225,7 +245,7 @@
                 }
             }
             draw() {
-                ctx.fillStyle = heartColors[0]; // بەکارهێنانی یەکەم ڕەنگی شین بۆ موشەکەکە
+                ctx.fillStyle = heartColors[0]; 
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
                 ctx.fill();
@@ -234,7 +254,7 @@
 
         function animate() {
             ctx.globalCompositeOperation = 'source-over';
-            ctx.fillStyle = 'rgba(0, 2, 10, 0.2)'; /* باکگراوندی کاتیی تاریک */
+            ctx.fillStyle = 'rgba(0, 2, 10, 0.2)'; 
             ctx.fillRect(0, 0, width, height);
             tick++;
             if (phase === 'fireworks') {
@@ -248,6 +268,8 @@
                 setTimeout(() => { 
                     document.getElementById('msg-left').classList.add('visible'); 
                     document.getElementById('msg-right').classList.add('visible'); 
+                    // دەرکەوتنی نامە نوێیەکە لە هەمان کاتدا
+                    document.getElementById('msg-bottom').classList.add('visible');
                 }, 1000);
             }
             requestAnimationFrame(animate);
